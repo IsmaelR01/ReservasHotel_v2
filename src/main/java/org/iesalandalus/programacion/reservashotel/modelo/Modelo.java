@@ -10,7 +10,7 @@ import org.iesalandalus.programacion.reservashotel.modelo.negocio.Reservas;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDateTime;
-
+/*
 public class Modelo {
     public static final int CAPACIDAD = 10;
     public static Huespedes huespedes;
@@ -102,3 +102,5 @@ public class Modelo {
     }
 
 }
+
+ */

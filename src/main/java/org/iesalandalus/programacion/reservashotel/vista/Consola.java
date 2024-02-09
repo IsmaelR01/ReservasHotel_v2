@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservashotel.vista;
-
+/*
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.*;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
@@ -187,4 +187,6 @@ public class Consola {
         return new Reserva(getHuespedPorDni(), leerHabitacionPorIdentificador(), leerRegimen(), leerfecha("Introduce fecha inicio reserva formato (dd/MM/YYYY)"), leerfecha("Introduce la fecha de fin de la reserva formato (dd/MM/YYYY) "),numPersonas);
     }
 }
+
+ */
 

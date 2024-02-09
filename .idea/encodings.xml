@@ -12,6 +12,9 @@
     <file url="file://$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/reservashotel/modelo/negocio/Reservas.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/reservashotel/vista/Consola.java" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/iesalandalus/programacion/reservashotel/vista/Opcion.java" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/iesalandalus/programacion/reservashotel/negocio/HabitacionesTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/iesalandalus/programacion/reservashotel/negocio/HuespedesTest.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/test/java/org/iesalandalus/programacion/reservashotel/negocio/ReservasTest.java" charset="UTF-8" />
     <file url="PROJECT" charset="ISO-8859-1" />
   </component>
 </project>

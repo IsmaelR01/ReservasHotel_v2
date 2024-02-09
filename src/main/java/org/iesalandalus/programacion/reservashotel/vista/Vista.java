@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservashotel.vista;
-
+/*
 import org.iesalandalus.programacion.reservashotel.controlador.Controlador;
 import org.iesalandalus.programacion.reservashotel.modelo.Modelo;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
@@ -364,7 +364,7 @@ public class Vista {
                     /*System.out.println("\n\nMostramos las reservas ordenadas por fecha de inicio de menor a mayor (numelementos="+numElementos+")");
                     mostrar(reservasFuturas);*/
 
-                    if (fechaInicioReserva.isAfter(reservasFuturas[0].getFechaFinReserva())) {
+ /*                   if (fechaInicioReserva.isAfter(reservasFuturas[0].getFechaFinReserva())) {
                         habitacionDisponible = new Habitacion(habitacionesTipoSolicitado[i]);
                         tipoHabitacionEncontrada = true;
                     }
@@ -380,7 +380,7 @@ public class Vista {
                         /*System.out.println("\n\nMostramos las reservas ordenadas por fecha de inicio de menor a mayor (numelementos="+numElementos+")");
                         mostrar(reservasFuturas);*/
 
-                        if (fechaFinReserva.isBefore(reservasFuturas[0].getFechaInicioReserva())) {
+ /*                       if (fechaFinReserva.isBefore(reservasFuturas[0].getFechaInicioReserva())) {
                             habitacionDisponible = new Habitacion(habitacionesTipoSolicitado[i]);
                             tipoHabitacionEncontrada = true;
                         }
@@ -477,3 +477,5 @@ public class Vista {
     }
 
 }
+
+  */

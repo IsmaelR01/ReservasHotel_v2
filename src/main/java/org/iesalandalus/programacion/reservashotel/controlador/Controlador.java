@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservashotel.controlador;
-
+/*
 import org.iesalandalus.programacion.reservashotel.modelo.Modelo;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Huesped;
@@ -9,7 +9,7 @@ import org.iesalandalus.programacion.reservashotel.vista.Vista;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDateTime;
-
+/*
 public class Controlador {
 
     private Modelo modelo;
@@ -108,3 +108,5 @@ public class Controlador {
     }
 
 }
+
+ */

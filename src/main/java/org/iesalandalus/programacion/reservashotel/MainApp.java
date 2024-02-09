@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservashotel;
-
+/*
 import org.iesalandalus.programacion.reservashotel.controlador.Controlador;
 import org.iesalandalus.programacion.reservashotel.modelo.Modelo;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
@@ -37,4 +37,6 @@ public class MainApp {
     }
 
 }
+
+ */
 
