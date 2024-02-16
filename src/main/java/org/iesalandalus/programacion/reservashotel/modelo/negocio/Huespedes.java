@@ -22,7 +22,8 @@ public class Huespedes {
         ArrayList<Huesped> copiaHuespedes = new ArrayList<>();
         Iterator<Huesped> copiaHuespedIterador = coleccionHuespedes.iterator();
         while(copiaHuespedIterador.hasNext()) {
-            copiaHuespedes.add(copiaHuespedIterador.next());
+            Huesped huesped = new Huesped(copiaHuespedIterador.next());
+            copiaHuespedes.add(huesped);
         }
         return copiaHuespedes;
     }
@@ -49,7 +50,7 @@ public class Huespedes {
             Iterator<Huesped> iteradorHuesped = coleccionHuespedes.iterator();
             while(iteradorHuesped.hasNext()) {
                 if(huesped.equals(iteradorHuesped.next())) {
-                    return huesped;
+                    return new Huesped(huesped);
                 }
             }
         }

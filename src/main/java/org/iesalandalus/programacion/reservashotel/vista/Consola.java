@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservashotel.vista;
-/*
+
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.*;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
@@ -7,6 +7,8 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import org.iesalandalus.programacion.reservashotel.modelo.Modelo.*;
 
@@ -35,24 +37,7 @@ public class Consola {
                 System.out.println("Opción incorrecta, inténtalo de nuevo.");
             }
         } while (opcionEscogida < 1 || opcionEscogida > Opcion.values().length);
-        return switch (opcionEscogida) {
-            case 1 -> Opcion.SALIR;
-            case 2 -> Opcion.INSERTAR_HUESPED;
-            case 3 -> Opcion.BUSCAR_HUESPED;
-            case 4 -> Opcion.BORRAR_HUESPED;
-            case 5 -> Opcion.MOSTRAR_HUESPEDES;
-            case 6 -> Opcion.INSERTAR_HABITACION;
-            case 7 -> Opcion.BUSCAR_HABITACION;
-            case 8 -> Opcion.BORRAR_HABITACION;
-            case 9 -> Opcion.MOSTRAR_HABITACIONES;
-            case 10 -> Opcion.INSERTAR_RESERVA;
-            case 11 -> Opcion.ANULAR_RESERVA;
-            case 12 -> Opcion.MOSTRAR_RESERVAS;
-            case 13 -> Opcion.CONSULTAR_DISPONIBILIDAD;
-            case 14 -> Opcion.REALIZAR_CHECKIN;
-            case 15 -> Opcion.REALIZAR_CHECKOUT;
-            default -> null;
-        };
+        return Opcion.values()[opcionEscogida - 1];
     }
 
     public static Huesped leerHuesped() {
@@ -65,18 +50,15 @@ public class Consola {
         String correo = Entrada.cadena();
         System.out.println("Número de teléfono");
         String telefono = Entrada.cadena();
-        System.out.println("Fecha de nacimiento formato (dd/MM/YYYY)");
-        String fechaNacimientoCad = Entrada.cadena();
-        LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCad, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return new Huesped(nombre, dni, correo, telefono, fechaNacimiento);
+        return new Huesped(nombre, dni, correo, telefono, leerfecha("Fecha de nacimiento formato (dd/MM/YYYY)"));
     }
 
     public static Huesped getHuespedPorDni() {
         System.out.println("Introduce el dni del huésped");
         String dni = Entrada.cadena();
-        Huesped[] busquedaHuesped = huespedes.get(); // Obtener el array de huéspedes
-        for (int i = 0; i < busquedaHuesped.length; i++) {
-            Huesped huesped = busquedaHuesped[i];
+        ArrayList<Huesped> busquedaHuesped = huespedes.get(); // Obtener el array de huéspedes
+        for (int i = 0; i < busquedaHuesped.size(); i++) {
+            Huesped huesped = busquedaHuesped.get(i);
             if (huesped.getDni().equals(dni)) {
                 return new Huesped(huesped.getNombre(), dni, huesped.getCorreo(), huesped.getTelefono(), huesped.getFechaNacimiento());
             }
@@ -86,21 +68,33 @@ public class Consola {
 
 
     public static LocalDate leerfecha(String mensaje) {
+        LocalDate fechaFinal = null;
         String fecha;
         do {
             System.out.println(mensaje);
             fecha = Entrada.cadena();
-            return LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } while (fecha == null);
+            try {
+                fechaFinal = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            } catch (DateTimeParseException e) {
+                System.out.println("Formato de fecha no válido. Por favor, introduzca la fecha  formato (dd/MM/yyyy)");
+            }
+        } while (fechaFinal == null);
+        return fechaFinal;
     }
 
     public static LocalDateTime leerFechaHora(String mensaje) {
         String fecha;
+        LocalDateTime fechaFinal = null;
         do {
             System.out.println(mensaje);
             fecha = Entrada.cadena();
-            return LocalDateTime.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-        }while(fecha == null);
+            try {
+                fechaFinal = LocalDateTime.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+            } catch (DateTimeParseException e) {
+                System.out.println("Formato de fecha y hora no válido. Por favor, introduzca la fecha y hora formato (dd/MM/yyyy HH:mm:ss)");
+            }
+        } while (fechaFinal == null);
+        return fechaFinal;
     }
 
 
@@ -123,9 +117,9 @@ public class Consola {
             System.out.println("Introduce el número de puerta");
             int puerta = Entrada.entero();
             String identificador = "" + planta + puerta;
-        Habitacion[] busquedaHabitacion = habitaciones.get();
-        for (int i = 0; i < busquedaHabitacion.length; i++) {
-            Habitacion habitacion = busquedaHabitacion[i];
+        ArrayList<Habitacion> busquedaHabitacion = habitaciones.get();
+        for (int i = 0; i < busquedaHabitacion.size(); i++) {
+            Habitacion habitacion = busquedaHabitacion.get(i);
             if(habitacion.getIdentificador().equals(identificador)) {
                 return new Habitacion(planta,puerta,habitacion.getPrecio(),habitacion.getTipoHabitacion());
             }
@@ -143,17 +137,11 @@ public class Consola {
             }
             System.out.println("Elija un tipo de habitación");
             opcionEscogida = Entrada.entero();
-            if (opcionEscogida < 1 || opcionEscogida > Opcion.values().length) {
+            if (opcionEscogida < 1 || opcionEscogida > TipoHabitacion.values().length) {
                 System.out.println("Opción incorrecta, inténtalo de nuevo.");
             }
-        } while (opcionEscogida < 1 || opcionEscogida > Opcion.values().length);
-        return switch (opcionEscogida) {
-            case 1 -> TipoHabitacion.SUITE;
-            case 2 -> TipoHabitacion.SIMPLE;
-            case 3 -> TipoHabitacion.DOBLE;
-            case 4 -> TipoHabitacion.TRIPLE;
-            default -> null;
-        };
+        } while (opcionEscogida < 1 || opcionEscogida > TipoHabitacion.values().length);
+        return TipoHabitacion.values()[opcionEscogida - 1];
     }
 
 
@@ -167,26 +155,19 @@ public class Consola {
             }
             System.out.println("Elija un Régimen");
             opcionEscogida = Entrada.entero();
-            if (opcionEscogida < 1 || opcionEscogida > Opcion.values().length) {
+            if (opcionEscogida < 1 || opcionEscogida > Regimen.values().length) {
                 System.out.println("Opción incorrecta, inténtalo de nuevo.");
             }
-        } while (opcionEscogida < 1 || opcionEscogida > Opcion.values().length);
-        return switch (opcionEscogida) {
-            case 1 -> Regimen.SOLO_ALOJAMIENTO;
-            case 2 -> Regimen.ALOJAMIENTO_DESAYUNO;
-            case 3 -> Regimen.MEDIA_PENSION;
-            case 4 -> Regimen.PENSION_COMPLETA;
-            default -> null;
-        };
+        } while (opcionEscogida < 1 || opcionEscogida > Regimen.values().length);
+        return Regimen.values()[opcionEscogida - 1];
     }
 
     public static Reserva leerReserva() {
         System.out.println("Introduce el número de personas");
         int numPersonas = Entrada.entero();
-
         return new Reserva(getHuespedPorDni(), leerHabitacionPorIdentificador(), leerRegimen(), leerfecha("Introduce fecha inicio reserva formato (dd/MM/YYYY)"), leerfecha("Introduce la fecha de fin de la reserva formato (dd/MM/YYYY) "),numPersonas);
     }
 }
 
- */
+
 

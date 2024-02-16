@@ -23,7 +23,8 @@ public class Reservas {
         ArrayList<Reserva> copiaReservas = new ArrayList<>();
         Iterator<Reserva> copiaReservaIterador = coleccionReservas.iterator();
         while(copiaReservaIterador.hasNext()) {
-            copiaReservas.add(copiaReservaIterador.next());
+            Reserva reserva = new Reserva(copiaReservaIterador.next());
+            copiaReservas.add(reserva);
         }
         return copiaReservas;
     }
@@ -50,7 +51,7 @@ public class Reservas {
             Iterator<Reserva> iteradorReserva = coleccionReservas.iterator();
             while(iteradorReserva.hasNext()) {
                 if(reserva.equals(iteradorReserva.next())) {
-                    return reserva;
+                    return new Reserva(reserva);
                 }
             }
         }
@@ -75,11 +76,21 @@ public class Reservas {
             throw  new NullPointerException("ERROR: No se pueden buscar reservas de un huesped nulo.");
         }
         ArrayList<Reserva> listarReservasPorHuesped = new ArrayList<>();
+        Iterator<Reserva> listarReservasHuespedIterador = get().iterator();
+        while(listarReservasHuespedIterador.hasNext()) {
+            Reserva reserva = listarReservasHuespedIterador.next();
+            if(reserva.getHuesped().equals(huesped)) {
+                listarReservasPorHuesped.add(reserva);
+            }
+        }
+        /*
         for(int i = 0; i< get().size(); i++) {
             if(coleccionReservas.get(i).getHuesped().equals(huesped)) {
                 listarReservasPorHuesped.add(coleccionReservas.get(i));
             }
         }
+
+         */
         return listarReservasPorHuesped;
     }
 
@@ -88,13 +99,23 @@ public class Reservas {
             throw new NullPointerException("ERROR: No se pueden buscar reservas de un tipo de habitación nula.");
         }
 
-        ArrayList<Reserva> listarPorTipoHabitacion = new ArrayList<>();
+        ArrayList<Reserva> listarReservasPorTipoHabitacion = new ArrayList<>();
+        Iterator<Reserva> listarReservasTipoHabitacionIterador = get().iterator();
+        while(listarReservasTipoHabitacionIterador.hasNext()) {
+            Reserva reserva = listarReservasTipoHabitacionIterador.next();
+            if (reserva.getHabitacion().getTipoHabitacion().equals(tipoHabitacion)) {
+                listarReservasPorTipoHabitacion.add(reserva);
+            }
+        }
+        /*
         for(int i = 0; i< get().size(); i++) {
             if(coleccionReservas.get(i).getHabitacion().getTipoHabitacion().equals(tipoHabitacion)) {
                 listarPorTipoHabitacion.add(coleccionReservas.get(i));
             }
         }
-        return listarPorTipoHabitacion;
+
+         */
+        return listarReservasPorTipoHabitacion;
     }
 
     public ArrayList<Reserva> getReservasFuturas(Habitacion habitacion) {
@@ -103,16 +124,36 @@ public class Reservas {
         }
 
         ArrayList<Reserva> reservasFuturas = new ArrayList<>();
+        Iterator<Reserva> reservasFuturasIterador = get().iterator();
+        while(reservasFuturasIterador.hasNext()) {
+            Reserva reserva = reservasFuturasIterador.next();
+            if(reserva.getHabitacion().equals(habitacion) && reserva.getFechaInicioReserva().isAfter(LocalDate.now())) {
+                reservasFuturas.add(reserva);
+            }
+        }
+        /*
         for (int i = 0; i < get().size(); i++) {
             if (coleccionReservas.get(i).getHabitacion().equals(habitacion) &&
                     coleccionReservas.get(i).getFechaInicioReserva().isAfter(LocalDate.now())) {
                 reservasFuturas.add(coleccionReservas.get(i));
             }
         }
+
+         */
         return reservasFuturas;
     }
 
     public void realizarCheckIn(Reserva reserva, LocalDateTime fecha) {
+        Iterator<Reserva> reservaCheckInIterador = coleccionReservas.iterator();
+        while(reservaCheckInIterador.hasNext()) {
+            Reserva reservaCheckIn = reservaCheckInIterador.next();
+            if(reservaCheckIn != null) {
+                if(reservaCheckIn.equals(reserva)) {
+                    reservaCheckIn.setCheckIn(fecha);
+                }
+            }
+        }
+        /*
         for (int i = 0; i < coleccionReservas.size(); i++) {
             Reserva reservaCheckIn = coleccionReservas.get(i);
             if (reservaCheckIn != null) {
@@ -121,9 +162,27 @@ public class Reservas {
                 }
             }
         }
+
+         */
     }
 
     public void realizarCheckOut(Reserva reserva, LocalDateTime fecha) {
+        Iterator<Reserva> reservaCheckOutIterador = coleccionReservas.iterator();
+        while(reservaCheckOutIterador.hasNext()) {
+            Reserva reservaCheckOut = reservaCheckOutIterador.next();
+            if(reservaCheckOut.getCheckIn() != null) {
+                if(reservaCheckOut != null) {
+                    if(reservaCheckOut.equals(reserva)) {
+                        reservaCheckOut.setCheckOut(fecha);
+                        System.out.println("Check-Out actualizado correctamente.");
+                    }
+                }
+            }else {
+                System.out.println("Primero debes realizar el Check-In");
+            }
+
+        }
+        /*
         for (int i = 0; i < coleccionReservas.size(); i++) {
             Reserva reservaCheckOut = coleccionReservas.get(i);
             if (reservaCheckOut != null) {
@@ -132,6 +191,8 @@ public class Reservas {
                 }
             }
         }
+
+         */
     }
 
 }

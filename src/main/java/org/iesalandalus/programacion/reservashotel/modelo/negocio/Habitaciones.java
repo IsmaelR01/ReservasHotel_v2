@@ -22,7 +22,8 @@ public class Habitaciones {
         ArrayList<Habitacion> copiaHabitaciones = new ArrayList<>();
         Iterator<Habitacion> copiaHabitacionIterador = coleccionHabitaciones.iterator();
         while(copiaHabitacionIterador.hasNext()) {
-            copiaHabitaciones.add(copiaHabitacionIterador.next());
+            Habitacion habitacion = new Habitacion(copiaHabitacionIterador.next());
+            copiaHabitaciones.add(habitacion);
         }
         return copiaHabitaciones;
     }
@@ -30,11 +31,21 @@ public class Habitaciones {
     public ArrayList<Habitacion> get(TipoHabitacion tipoHabitacion) {
 
         ArrayList<Habitacion> listaTipoHabitacion = new ArrayList<>();
+        Iterator<Habitacion> listaTipoHabitacionIterador = get().iterator();
+        while(listaTipoHabitacionIterador.hasNext()) {
+            Habitacion habitacion = listaTipoHabitacionIterador.next();
+            if(habitacion.getTipoHabitacion().equals(tipoHabitacion)) {
+                listaTipoHabitacion.add(habitacion);
+            }
+        }
+        /*
         for(int i = 0;i < get().size(); i++) {
             if(coleccionHabitaciones.get(i).getTipoHabitacion().equals(tipoHabitacion)) {
                 listaTipoHabitacion.add(coleccionHabitaciones.get(i));
             }
         }
+
+         */
         return listaTipoHabitacion;
     }
 
@@ -59,7 +70,7 @@ public class Habitaciones {
             Iterator<Habitacion> iteradorHabitacion = coleccionHabitaciones.iterator();
             while(iteradorHabitacion.hasNext()) {
                 if(habitacion.equals(iteradorHabitacion.next())) {
-                    return habitacion;
+                    return new Habitacion(habitacion);
                 }
             }
         }

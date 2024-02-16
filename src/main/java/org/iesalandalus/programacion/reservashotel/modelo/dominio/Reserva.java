@@ -27,13 +27,7 @@ public class Reserva {
         setFechaInicioReserva(fechaInicioReserva);
         setFechaFinReserva(fechaFinReserva);
         setNumeroPersonas(numeroPersonas);
-        if(getCheckIn() != null) {
-            setCheckIn(checkIn);
-        }
-        if(getCheckOut() != null) {
-            setCheckOut(checkOut);
-            setPrecio();
-        }
+        precio = 0;
     }
 
     public Reserva(Reserva reserva) {
@@ -52,7 +46,7 @@ public class Reserva {
         }
         if(reserva.getCheckOut() != null) {
             setCheckOut(reserva.getCheckOut());
-            setPrecio();
+            precio = reserva.getPrecio();
         }
     }
 
@@ -156,6 +150,7 @@ public class Reserva {
             throw  new IllegalArgumentException("ERROR: El checkout de una reserva puede ser como m�ximo 12 horas despu�s de la fecha de fin de la reserva.");
         }
         this.checkOut = checkOut;
+        setPrecio();
     }
 
     public double getPrecio() {

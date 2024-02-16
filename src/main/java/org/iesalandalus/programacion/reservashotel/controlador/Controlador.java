@@ -1,5 +1,5 @@
 package org.iesalandalus.programacion.reservashotel.controlador;
-/*
+
 import org.iesalandalus.programacion.reservashotel.modelo.Modelo;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Habitacion;
 import org.iesalandalus.programacion.reservashotel.modelo.dominio.Huesped;
@@ -9,7 +9,8 @@ import org.iesalandalus.programacion.reservashotel.vista.Vista;
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDateTime;
-/*
+import java.util.ArrayList;
+
 public class Controlador {
 
     private Modelo modelo;
@@ -48,7 +49,7 @@ public class Controlador {
         modelo.borrar(huesped);
     }
 
-    public Huesped[] getHuespedes() {
+    public ArrayList<Huesped> getHuespedes() {
         return modelo.getHuespedes();
     }
 
@@ -64,10 +65,10 @@ public class Controlador {
         modelo.borrar(habitacion);
     }
 
-    public Habitacion[] getHabitaciones() {
+    public ArrayList<Habitacion> getHabitaciones() {
         return modelo.getHabitaciones();
     }
-    public Habitacion[] getHabitaciones(TipoHabitacion tipoHabitacion) {
+    public ArrayList<Habitacion> getHabitaciones(TipoHabitacion tipoHabitacion) {
         return modelo.getHabitaciones(tipoHabitacion);
     }
 
@@ -83,19 +84,19 @@ public class Controlador {
         return modelo.buscar(reserva);
     }
 
-    public Reserva[] getReservas() {
+    public ArrayList<Reserva> getReservas() {
         return modelo.getReservas();
     }
 
-    public Reserva[] getReservas(Huesped huesped) {
+    public ArrayList<Reserva> getReservas(Huesped huesped) {
         return modelo.getReservas(huesped);
     }
 
-    public Reserva[] getReservas(TipoHabitacion tipoHabitacion) {
+    public ArrayList<Reserva> getReservas(TipoHabitacion tipoHabitacion) {
         return modelo.getReservas(tipoHabitacion);
     }
 
-    public Reserva[] getReservasFuturas(Habitacion habitacion) {
+    public ArrayList<Reserva> getReservasFuturas(Habitacion habitacion) {
         return modelo.getReservasFuturas(habitacion);
     }
 
@@ -109,4 +110,6 @@ public class Controlador {
 
 }
 
- */
+
+
+
