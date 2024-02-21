@@ -200,19 +200,6 @@ public class Reservas {
 
          */
 
-
-
-        /*
-        for (int i = 0; i < coleccionReservas.size(); i++) {
-            Reserva reservaCheckOut = coleccionReservas.get(i);
-            if (reservaCheckOut != null) {
-                if (reservaCheckOut.equals(reserva)) {
-                    reservaCheckOut.setCheckOut(fecha);
-                }
-            }
-        }
-
-         */
     }
 
 }
