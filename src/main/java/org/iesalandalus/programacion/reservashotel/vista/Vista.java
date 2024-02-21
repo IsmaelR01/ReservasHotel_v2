@@ -227,10 +227,12 @@ public class Vista {
                 System.out.println("Reservas del hu�sped que has buscado:");
                 Comparator<Habitacion> habitacionComparator = Comparator.comparing(Habitacion::getIdentificador);
                 Collections.sort(reservasHuesped,Comparator.comparing(Reserva::getFechaInicioReserva).thenComparing(Reserva::getHabitacion,habitacionComparator));
+                int contador = 1;
                 Iterator<Reserva> reservasHuespedIterador = reservasHuesped.iterator();
                 while(reservasHuespedIterador.hasNext()) {
                      Reserva reserva = reservasHuespedIterador.next();
-                    System.out.println(reserva.toString());
+                    System.out.println(contador +".- " + reserva.toString());
+                    contador++;
                 }
             }
         } catch (NullPointerException | IllegalArgumentException e) {
@@ -506,10 +508,7 @@ public class Vista {
             if(reservas.isEmpty()) {
                 System.out.println("No hay ninguna reserva, por lo que no se puede hacer el check-in");
             }else {
-                Iterator<Reserva> reservaCheckInIterador = reservas.iterator();
-                while(reservaCheckInIterador.hasNext()) {
-                    System.out.println(reservaCheckInIterador.next().toString());
-                }
+                listarReservas(huesped);
 
 
                 int opcion;
@@ -538,10 +537,7 @@ public class Vista {
             if(reservas.isEmpty()) {
                 System.out.println("No hay ninguna reserva, por lo que no se puede hacer el check-out");
             }else {
-                Iterator<Reserva> reservasCheckOutIterador = reservas.iterator();
-                while(reservasCheckOutIterador.hasNext()) {
-                    System.out.println(reservasCheckOutIterador.next().toString());
-                }
+                listarReservas(huesped);
 
                 int opcion;
                 do {

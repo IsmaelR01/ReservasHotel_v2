@@ -170,6 +170,21 @@ public class Reservas {
         Iterator<Reserva> reservaCheckOutIterador = coleccionReservas.iterator();
         while(reservaCheckOutIterador.hasNext()) {
             Reserva reservaCheckOut = reservaCheckOutIterador.next();
+            if(reservaCheckOut != null) {
+                if(reservaCheckOut.equals(reserva)) {
+                    if(reserva.getCheckIn()!= null) {
+                        reservaCheckOut.setCheckOut(fecha);
+                        System.out.println("Check-Out actualizado correctamente.");
+                    }else {
+                        System.out.println("Primero debes realizar el Check-In");
+                    }
+                }
+            }
+        }
+        /*
+        Iterator<Reserva> reservaCheckOutIterador = coleccionReservas.iterator();
+        while(reservaCheckOutIterador.hasNext()) {
+            Reserva reservaCheckOut = reservaCheckOutIterador.next();
             if(reservaCheckOut.getCheckIn() != null) {
                 if(reservaCheckOut != null) {
                     if(reservaCheckOut.equals(reserva)) {
@@ -182,6 +197,11 @@ public class Reservas {
             }
 
         }
+
+         */
+
+
+
         /*
         for (int i = 0; i < coleccionReservas.size(); i++) {
             Reserva reservaCheckOut = coleccionReservas.get(i);
